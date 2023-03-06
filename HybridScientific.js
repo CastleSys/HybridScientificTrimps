@@ -2,7 +2,7 @@
 // @name         Scientific Early Hybrid
 // @version      1.0
 // @description  try to take over the world!
-// @author       Castle, Zid, Noo Noo, Cyber CheeseYou
+// @author       Castle, Zid, Noo Noo, Cyber Cheese
 // @include      *trimps.github.io*
 // @match        *trimps.github.io*
 // @connect      *trimps.github.io*
