@@ -1,5 +1,17 @@
-(function init() {
-function prettify(number) {
+// ==UserScript==
+// @name         Scientific Early Hybrid
+// @version      1.0
+// @description  try to take over the world!
+// @author       Castle, Zid, Noo Noo, Cyber CheeseYou
+// @include      *trimps.github.io*
+// @match        *trimps.github.io*
+// @connect      *trimps.github.io*
+// @connect      self
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=github.io
+// ==/UserScript==
+
+
+prettify = function(number) {
 	var numberTmp = number;
 	if (!isFinite(number)) return "<span class='icomoon icon-infinity'></span>";
 	if (number >= 1000 && number < 10000) return Math.floor(number);
@@ -33,6 +45,12 @@ function prettify(number) {
 			suffix = suffices[Math.ceil(base / suffices.length) - 2] + suffices[suf2];
 		}
 	}
+
+	if (game.options.menu.standardNotation.enabled == 4 && base > 11) {
+  		var exponent = parseFloat(numberTmp).toExponential(2);
+			exponent = exponent.replace('+', '');
+			return exponent;
+  }
 	else {
 		var suffices = [
 			'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud',
@@ -48,7 +66,7 @@ function prettify(number) {
             'Nn', 'Ct', 'Uc'
 		];
 		var suffix;
-		if (game.options.menu.standardNotation.enabled == 2 || (game.options.menu.standardNotation.enabled == 1 && base > suffices.length) || (game.options.menu.standardNotation.enabled == 4 && base > 11))
+		if (game.options.menu.standardNotation.enabled == 2 || (game.options.menu.standardNotation.enabled == 1 && base > suffices.length))
 			suffix = "e" + ((base) * 3);
 		else if (game.options.menu.standardNotation.enabled && base <= suffices.length)
 			suffix = suffices[base-1];
@@ -60,4 +78,4 @@ function prettify(number) {
 		}
 	}
 	return prettifySub(number) + suffix;
-}
+};
